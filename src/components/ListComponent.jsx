@@ -11,13 +11,13 @@ export function ListComponent() {
 	const expenses = response.expenses.data;
 
 	return (
-		<div className="max-w-screen-md mx-auto my-5">
+		<div className="max-w-screen-md mx-auto py-5">
 			<h1 className="text-3xl font-bold py-5">Expenses</h1>
-			<ul>
+			<div className="divide-y">
 				{expenses.map((expense) => (
 					<ExpenseItem key={expense.id} expense={expense} />
 				))}
-			</ul>
+			</div>
 		</div>
 	);
 }

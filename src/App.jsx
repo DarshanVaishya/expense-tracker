@@ -4,9 +4,11 @@ import "./index.css";
 
 function App() {
 	return (
-		<ExpensesContext>
-			<ListComponent />
-		</ExpensesContext>
+		<div className="bg-neutral-50 min-w-[100vw] min-h-[100vh]">
+			<ExpensesContext>
+				<ListComponent />
+			</ExpensesContext>
+		</div>
 	);
 }
 
