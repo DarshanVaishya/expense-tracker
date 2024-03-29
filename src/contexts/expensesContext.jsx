@@ -11,6 +11,7 @@ export function ExpensesContext({ children }) {
 			const response = await fetch("http://localhost:8080/api/data");
 			const data = await response.json();
 			setExpenses(data.data);
+			console.log(data.data);
 		}
 
 		fetchExpenses();

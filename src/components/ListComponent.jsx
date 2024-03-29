@@ -23,10 +23,10 @@ export function ListComponent() {
 
 			{isActive && <AddExpense />}
 
-			<div className="my-5">
+			<div className="my-5 text-center">
 				<h2 className="text-2xl">
-					Total Expenses:{" "}
-					<span className="text-red-500">${totalExpenses(expenses)}</span>
+					Total Expenses:
+					<p className="text-red-500 text-5xl">${totalExpenses(expenses)}</p>
 				</h2>
 			</div>
 			<div className="divide-y">

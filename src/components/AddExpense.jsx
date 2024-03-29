@@ -13,7 +13,7 @@ export default function AddExpense() {
 		e.preventDefault();
 
 		async function addExpense() {
-			setIsLoading(true);
+			setIsLoading((p) => !p);
 			try {
 				const response = await axios.post("http://localhost:8080/api/data", {
 					title,
@@ -30,7 +30,7 @@ export default function AddExpense() {
 			} catch (error) {
 				console.error(error);
 			} finally {
-				setIsLoading(false);
+				setIsLoading((p) => !p);
 			}
 		}
 
@@ -75,7 +75,7 @@ export default function AddExpense() {
 				disabled={isLoading}
 				className="mt-2 border py-2 px-4 bg-neutral-200 hover:bg-neutral-50 hover:border-neutral-500 max-w-48 disabled:opacity-75"
 			>
-				Submit
+				{isLoading ? "Submitting..." : "Submit"}
 			</button>
 		</form>
 	);

@@ -46,6 +46,22 @@ app.post("/api/data", (req, res) => {
 	res.status(200).send({ msg: "Expense added successfully" });
 });
 
+app.delete("/api/data/:id", (req, res) => {
+	const id = req.params.id;
+	console.log(req);
+	const index = expenses.findIndex(
+		(expense) => expense.id === Number.parseInt(id)
+	);
+	if (index === -1) {
+		res.status(404).send({ msg: "Expense not found" });
+		return;
+	}
+
+	expenses.splice(index, 1);
+
+	res.status(200).send({ msg: "Expense deleted successfully" });
+});
+
 app.listen(8080, () => {
 	console.log("Server is running on port 8080");
 });
