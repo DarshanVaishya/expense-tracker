@@ -5,13 +5,15 @@ import axios from "axios";
 export default function AddExpense() {
 	const [title, setTitle] = useState("");
 	const [amount, setAmount] = useState("");
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState("🍔");
+	const [isLoading, setIsLoading] = useState(false);
 	const { setUpdate } = useContext(expensesContext);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 
 		async function addExpense() {
+			setIsLoading(true);
 			try {
 				const response = await axios.post("http://localhost:8080/api/data", {
 					title,
@@ -27,6 +29,8 @@ export default function AddExpense() {
 				}
 			} catch (error) {
 				console.error(error);
+			} finally {
+				setIsLoading(false);
 			}
 		}
 
@@ -67,7 +71,10 @@ export default function AddExpense() {
 				<option value="⚕️">Medical & Healthcare</option>
 			</select>
 
-			<button className="mt-2 border py-2 px-4 bg-neutral-200 hover:bg-neutral-50 hover:border-neutral-500 max-w-48">
+			<button
+				disabled={isLoading}
+				className="mt-2 border py-2 px-4 bg-neutral-200 hover:bg-neutral-50 hover:border-neutral-500 max-w-48 disabled:opacity-75"
+			>
 				Submit
 			</button>
 		</form>

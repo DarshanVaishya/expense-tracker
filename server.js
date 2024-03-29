@@ -7,29 +7,20 @@ app.use(express.json());
 
 const expenses = [
 	{
-		id: 1,
-		date: "2020-01-01",
-		title: "Rent",
-		amount: 1000,
-		logo: "🏠",
-	},
-	{
 		id: 2,
 		date: "2020-01-02",
 		title: "Food",
 		amount: 50,
 		logo: "🍔",
 	},
+	{
+		id: 1,
+		date: "2020-01-01",
+		title: "Rent",
+		amount: 1000,
+		logo: "🏠",
+	},
 ];
-
-const categories = {
-	Food: "🍔",
-	Rent: "🏠",
-	Transportation: "🚗",
-	Utilities: "💡",
-	Insurance: "🏥",
-	"Medical & Healthcare": "⚕️",
-};
 
 app.get("/api/data", (req, res) => {
 	if (!expenses || Object.keys(expenses).length === 0) {
@@ -51,7 +42,7 @@ app.post("/api/data", (req, res) => {
 
 	const id = expenses.length + 1;
 
-	expenses.push({ id, date, title, amount, logo });
+	expenses.unshift({ id, date, title, amount, logo });
 	res.status(200).send({ msg: "Expense added successfully" });
 });
 
