@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import { expensesContext } from "../contexts/expensesContext";
 import ExpenseItem from "./ExpenseItem";
 import AddExpense from "./AddExpense";
-import LoaderComponent from "./LoaderComponent";
 
 function totalExpenses(expenses) {
+	if (!expenses) return 0;
 	return expenses.reduce((acc, curr) => acc + Number.parseInt(curr.amount), 0);
 }
 
@@ -26,13 +26,15 @@ export function ListComponent() {
 			<div className="my-5 text-center">
 				<h2 className="text-2xl">
 					Total Expenses:
-					<p className="text-red-500 text-5xl">${totalExpenses(expenses)}</p>
+					<p className="text-red-500 text-5xl mt-2">
+						${totalExpenses(expenses)}
+					</p>
 				</h2>
 			</div>
 			<div className="divide-y">
 				{expenses.length === 0 ? (
 					<div className="flex justify-center">
-						<LoaderComponent />
+						<p className="text-2xl">No expenses yet.</p>
 					</div>
 				) : (
 					expenses.map((expense) => (

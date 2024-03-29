@@ -24,7 +24,7 @@ const expenses = [
 
 app.get("/api/data", (req, res) => {
 	if (!expenses || Object.keys(expenses).length === 0) {
-		res.status(404).send({ msg: "No expenses found" });
+		res.status(200).send({ msg: "No expenses found", data: [] });
 	}
 
 	res.send({
@@ -48,7 +48,6 @@ app.post("/api/data", (req, res) => {
 
 app.delete("/api/data/:id", (req, res) => {
 	const id = req.params.id;
-	console.log(req);
 	const index = expenses.findIndex(
 		(expense) => expense.id === Number.parseInt(id)
 	);

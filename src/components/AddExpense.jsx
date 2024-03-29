@@ -21,6 +21,7 @@ export default function AddExpense() {
 					logo: category,
 					date: new Date().toJSON().slice(0, 10).replace(/-/g, "/").toString(),
 				});
+				console.log(response.data.msg)
 
 				if (response.status === 200) {
 					setTitle("");
