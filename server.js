@@ -13,13 +13,13 @@ const expenses = [
 		amount: 1000,
 		logo: "🏠",
 	},
-  {
-    id: 2,
-    date: "2020-01-02",
-    title: "Food",
-    amount: 50,
-    logo: "🍔",
-  }
+	{
+		id: 2,
+		date: "2020-01-02",
+		title: "Food",
+		amount: 50,
+		logo: "🍔",
+	},
 ];
 
 const categories = {
@@ -40,6 +40,19 @@ app.get("/api/data", (req, res) => {
 		data: expenses,
 		msg: "Expenses sent successfully",
 	});
+});
+
+app.post("/api/data", (req, res) => {
+	const { date, title, amount, logo } = req.body;
+	if (!date || !title || !amount || !logo) {
+		res.status(400).send({ msg: "Please fill all fields" });
+		return;
+	}
+
+	const id = expenses.length + 1;
+
+	expenses.push({ id, date, title, amount, logo });
+	res.status(200).send({ msg: "Expense added successfully" });
 });
 
 app.listen(8080, () => {
