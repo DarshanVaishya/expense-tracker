@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 app.get("/api/data", (req, res) => {
 	prisma.expenses.findMany().then((data) => res.json(data));
