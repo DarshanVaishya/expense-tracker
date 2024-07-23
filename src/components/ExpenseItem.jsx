@@ -11,7 +11,7 @@ export default function ExpenseItem({ expense }) {
 				const response = await axios.delete(
 					`http://localhost:8080/api/data/${expense.id}`
 				);
-				console.log(response.msg);
+				console.log(response.data.msg);
 
 				if (response.status === 200) setUpdate((p) => p + 1);
 			} catch (error) {
@@ -23,7 +23,7 @@ export default function ExpenseItem({ expense }) {
 	};
 
 	return (
-		<div className="p-2 my-2 flex gap-2 rounded group hover:bg-neutral-100">
+		<div className="py-2 my-2 px-4 flex gap-2 rounded group hover:bg-neutral-100">
 			<p className="self-center text-3xl">{expense.logo}</p>
 			<div className="flex flex-col flex-1">
 				<p className="font-bold">{expense.title}</p>

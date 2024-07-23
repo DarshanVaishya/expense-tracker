@@ -5,7 +5,10 @@ import AddExpense from "./AddExpense";
 
 function totalExpenses(expenses) {
 	if (!expenses) return 0;
-	return expenses.reduce((acc, curr) => acc + Number.parseInt(curr.amount), 0);
+	return expenses.reduce(
+		(acc, curr) => acc + Number.parseFloat(curr.amount),
+		0
+	);
 }
 
 export function ListComponent() {
@@ -16,7 +19,7 @@ export function ListComponent() {
 			<h1 className="text-3xl font-bold py-5">Expense Tracker</h1>
 			<button
 				onClick={() => setIsActive((p) => !p)}
-				className="border py-2 px-4 bg-neutral-200 hover:bg-neutral-50 hover:border-neutral-500 active:scale-95 transition-transform duration-75 ease-in-out"
+				className="border rounded-md py-2 px-4 bg-neutral-50 border-neutral-500 hover:bg-neutral-100 hover:border-neutral-900 active:scale-95 transition-transform duration-75 ease-in-out"
 			>
 				{isActive ? "Close" : "Add Expense"}
 			</button>

@@ -21,7 +21,7 @@ export default function AddExpense() {
 					logo: category,
 					date: new Date().toJSON().slice(0, 10).replace(/-/g, "/").toString(),
 				});
-				console.log(response.data.msg)
+				console.log(response.data.msg);
 
 				if (response.status === 200) {
 					setTitle("");
@@ -46,7 +46,7 @@ export default function AddExpense() {
 				value={title}
 				type="text"
 				placeholder="Title"
-				className="border py-2 px-3"
+				className="border py-2 px-3 rounded-md"
 			/>
 
 			<label>Amount</label>
@@ -55,14 +55,14 @@ export default function AddExpense() {
 				value={amount}
 				type="number"
 				placeholder="Amount"
-				className="border py-2 px-3"
+				className="border py-2 px-3 rounded-md"
 			/>
 
 			<label>Category</label>
 			<select
 				onChange={(e) => setCategory(e.target.value)}
 				value={category}
-				className="border py-2 px-3"
+				className="border py-2 px-3 rounded-md"
 			>
 				<option value="🍔">Food</option>
 				<option value="🏠">Rent</option>
@@ -74,7 +74,7 @@ export default function AddExpense() {
 
 			<button
 				disabled={isLoading}
-				className="mt-2 border py-2 px-4 bg-neutral-200 hover:bg-neutral-50 hover:border-neutral-500 max-w-48 disabled:opacity-75"
+				className="mt-2 border rounded-md py-2 px-4 bg-neutral-50 border-neutral-500 hover:bg-neutral-100 hover:border-neutral-900 max-w-48 disabled:opacity-75 active:scale-95 transition-transform duration-75 ease-in-out"
 			>
 				{isLoading ? "Submitting..." : "Submit"}
 			</button>
