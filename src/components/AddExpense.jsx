@@ -15,11 +15,14 @@ export default function AddExpense() {
 		async function addExpense() {
 			setIsLoading((p) => !p);
 			try {
-				const response = await axios.post("http://localhost:8080/api/data", {
-					title,
-					amount,
-					logo: category,
-				});
+				const response = await axios.post(
+					"https://expense-tracker-darzi-dc51536d1dce.herokuapp.com/api/data",
+					{
+						title,
+						amount,
+						logo: category,
+					}
+				);
 
 				console.log(response);
 

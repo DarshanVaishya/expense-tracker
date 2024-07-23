@@ -1,12 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
+const { DATABASE_URL } = "$env.static.private;"; // Adjust according to your environment variable naming
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+	datasources: {
+		db: {
+			url: DATABASE_URL,
+		},
+	},
+});
 
 app.get("/api/data", (req, res) => {
 	prisma.expenses.findMany().then((data) => res.json(data));

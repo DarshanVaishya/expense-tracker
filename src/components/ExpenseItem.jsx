@@ -9,7 +9,7 @@ export default function ExpenseItem({ expense }) {
 		async function handleDelete() {
 			try {
 				const response = await axios.delete(
-					`http://localhost:8080/api/data/${expense.id}`
+					`https://expense-tracker-darzi-dc51536d1dce.herokuapp.com/api/data/${expense.id}`
 				);
 				console.log(response);
 
