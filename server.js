@@ -1,64 +1,38 @@
 const express = require("express");
 const cors = require("cors");
+const { PrismaClient } = require("@prisma/client");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const expenses = [
-	{
-		id: 2,
-		date: "2020-01-02",
-		title: "Food",
-		amount: 50,
-		logo: "🍔",
-	},
-	{
-		id: 1,
-		date: "2020-01-01",
-		title: "Rent",
-		amount: 1000,
-		logo: "🏠",
-	},
-];
+const prisma = new PrismaClient();
 
 app.get("/api/data", (req, res) => {
-	if (!expenses || Object.keys(expenses).length === 0) {
-		res.status(200).send({ msg: "No expenses found", data: [] });
-	}
-
-	res.send({
-		data: expenses,
-		msg: "Expenses sent successfully",
-	});
+	prisma.expenses.findMany().then((data) => res.json(data));
 });
 
 app.post("/api/data", (req, res) => {
-	const { date, title, amount, logo } = req.body;
-	if (!date || !title || !amount || !logo) {
-		res.status(400).send({ msg: "Please fill all fields" });
-		return;
-	}
-
-	const id = expenses.length + 1;
-
-	expenses.unshift({ id, date, title, amount, logo });
-	res.status(200).send({ msg: "Expense added successfully" });
+	const { title, amount, logo } = req.body;
+	prisma.expenses
+		.create({
+			data: {
+				title,
+				amount: Number.parseFloat(amount),
+				logo,
+			},
+		})
+		.then((data) => res.json(data));
 });
 
 app.delete("/api/data/:id", (req, res) => {
-	const id = req.params.id;
-	const index = expenses.findIndex(
-		(expense) => expense.id === Number.parseInt(id)
-	);
-	if (index === -1) {
-		res.status(404).send({ msg: "Expense not found" });
-		return;
-	}
-
-	expenses.splice(index, 1);
-
-	res.status(200).send({ msg: "Expense deleted successfully" });
+	const id = Number.parseInt(req.params.id);
+	console.log(id);
+	prisma.expenses
+		.delete({ where: { id } })
+		.then((data) =>
+			res.status(204).json({ msg: "Expense deleted successfully!", data })
+		);
 });
 
 app.listen(8080, () => {

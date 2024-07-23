@@ -17,11 +17,11 @@ export default function AddExpense() {
 			try {
 				const response = await axios.post("http://localhost:8080/api/data", {
 					title,
-					amount: amount.toString(),
+					amount,
 					logo: category,
-					date: new Date().toJSON().slice(0, 10).replace(/-/g, "/").toString(),
 				});
-				console.log(response.data.msg);
+
+				console.log(response);
 
 				if (response.status === 200) {
 					setTitle("");

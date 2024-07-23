@@ -11,9 +11,9 @@ export default function ExpenseItem({ expense }) {
 				const response = await axios.delete(
 					`http://localhost:8080/api/data/${expense.id}`
 				);
-				console.log(response.data.msg);
+				console.log(response);
 
-				if (response.status === 200) setUpdate((p) => p + 1);
+				if (response.status === 204) setUpdate((p) => p + 1);
 			} catch (error) {
 				console.error(error);
 			}
