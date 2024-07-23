@@ -1,0 +1,5 @@
+[build]
+  command = "npm run build && npx prisma generate"
+  functions = "functions"
+  environment = 
+    - DATABASE_URL
