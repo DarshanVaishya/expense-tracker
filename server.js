@@ -35,6 +35,8 @@ app.delete("/api/data/:id", (req, res) => {
 		);
 });
 
-app.listen(8080, () => {
-	console.log("Server is running on port 8080");
+const port = process.env.PORT || 3000; // Fallback to 3000 if PORT is not defined
+
+app.listen(port, () => {
+	console.log(`Server is running on port ${port}`);
 });
