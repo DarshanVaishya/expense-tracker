@@ -27,7 +27,9 @@ export default function ExpenseItem({ expense }) {
 			<p className="self-center text-3xl">{expense.logo}</p>
 			<div className="flex flex-col flex-1">
 				<p className="font-bold">{expense.title}</p>
-				<p className="text-zinc-500">{expense.date}</p>
+				<p className="text-zinc-500">
+					{new Date(expense.date).toLocaleDateString()}
+				</p>
 			</div>
 
 			<button
